@@ -1,7 +1,6 @@
     <?php  
       
     /* 
-     * Filename: httpclient.php 
      * Created on 2012-12-21 
      * Created by RobinTang 
      * To change the template for this generated file go to 
@@ -263,10 +262,4 @@
             }  
         }  
     }  
-      
-    // demo  
-    // now let begin test it  
-    $client = new SinHttpClient();  // create a client  
-    $client->get('http://www.baidu.com/');   // get  
-    echo $client->response->body; // echo  2
     ?>  
