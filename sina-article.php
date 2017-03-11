@@ -1,10 +1,11 @@
 <?php
 function workUrl($url) {
-	$client = new SinHttpClient();
+	/*$client = new SinHttpClient();
 	$client -> request -> setHeader('User-Agent', 'Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)');
 	$client -> get(trim($url));
-	$article = $client -> response -> body;
+	$article = $client -> response -> body;*/
 	$content='';
+	$article=file_get_contents(trim($url));
 	if(strpos($article,'<!-- 正文开始 -->')){
 		preg_match('/<!-- 正文开始 -->([\s\S]*)<!-- 正文结束 -->/', $article, $content);
 	}else{
@@ -19,12 +20,12 @@ function workUrl($url) {
 }
 
 set_time_limit(0);
-require 'sinhttp.php';
 if ($argc < 2) {
 	echo <<<EOF
 
 ==========
-新浪博客爬虫+自动生成电子书
+新浪博客爬虫-文章爬虫
+-可以提取已知文章页面（/s/blog*）里面的文章
 使用方法：
 php $argv[0] <网址文件>
 参数解释：
@@ -47,7 +48,7 @@ if (!$urls) {
 }
 $name=explode('.',$argv[1])[0];
 $urls = explode(PHP_EOL, $urls);
-$dir = $name.'-'.time();
+$dir = preg_replace('/(\/|\\\)/','-',$name).'-'.time();
 mkdir($dir);
 echo PHP_EOL.PHP_EOL;
 foreach ($urls as $url) {
