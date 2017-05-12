@@ -1,6 +1,6 @@
 # advanced-php-crawler
 ## 新浪博客全能爬虫
-这套PHP编写的小程序可以帮助喜欢在电子书阅读器上看新浪博客上文章的你，它可以根据已知的文章列表来爬行，亦可以根据已知的文章目录来爬行，还可以与Calibre等工具配合生成带目录的电子书。文章细节均已自动优化，且使用MarkDown格式，只为带给你完美的阅读体验！
+这套PHP编写的小程序可以帮助喜欢在电子书阅读器上看新浪博客上文章的你，它可以根据已知的文章列表来爬行，亦可以根据已知的文章目录来爬行。而且，它生成的是gitbook的标准格式，可以用gitbook/calibre工具自动生成多种格式（mobi/epub/pdf）的电子书。文章细节均已自动优化，爬行图片保存到本地，也生成封面，且使用MarkDown格式，只为带给你完美的阅读体验！
 ## 文件功能详解：
 ### sina-list.php
 它用于爬行像这样子的博客文章目录：
@@ -82,6 +82,10 @@
 
 ## 附录
 [Calibre：kindle后续成书步骤][1]
+
+[Gitbook安装全教程](http://www.jianshu.com/p/7476afdd9248)
+
+[ebook-convert安装教程](https://chrisniael.gitbooks.io/gitbook-documentation/content/build/ebookconvert.html)
 
 [1]:	https://kindlefere.com/post/82.html
 
