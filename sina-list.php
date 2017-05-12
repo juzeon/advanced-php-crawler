@@ -36,7 +36,10 @@ if (!$urls) {
 }
 $name=explode('.',$argv[1])[0];
 $urls = explode(PHP_EOL, $urls);
-$name = preg_replace('/(\/|\\\)/','-',$name).'-'.time();
+$name = '+LIST+'.preg_replace('/(\/|\\\)/','-',$name).'.txt';
+if(file_exists($name)){
+	unlink($name);
+}
 echo PHP_EOL.PHP_EOL;
 foreach ($urls as $url) {
 	if (empty($url)) {
@@ -55,7 +58,7 @@ foreach ($urls as $url) {
 			continue;
 		}
 		echo '##本页文章：'.PHP_EOL;
-		$f = fopen($name.'.txt', 'a');
+		$f = fopen($name, 'a');
 		for($j=0;$j<count($result['blogUrls'][0]);$j++){
 			$title=trim(str_replace('&nbsp;','',strip_tags($result['titles'][0][$j])));
 			$blogUrl=trim($result['blogUrls'][0][$j]);
@@ -67,5 +70,6 @@ foreach ($urls as $url) {
 		break;
 	}
 }
+echo '#输出文件：'. $name . PHP_EOL;
 echo '#全部任务处理完毕' . PHP_EOL . '---------' . PHP_EOL;
 echo '#你现在可以使用sina-article.php来爬取文章内容' . PHP_EOL . '===========' . PHP_EOL . PHP_EOL;
