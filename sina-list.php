@@ -36,9 +36,10 @@ if (!$urls) {
 }
 $name=explode('.',$argv[1])[0];
 $urls = explode(PHP_EOL, $urls);
-$name = '+LIST+'.preg_replace('/(\/|\\\)/','-',$name).'.txt';
+$name = 'L+'.preg_replace('/(\/|\\\)/','-',$name).'.txt';
 if(file_exists($name)){
 	unlink($name);
+	echo '检测到此LIST存在，已经删除旧的文件' . PHP_EOL;
 }
 echo PHP_EOL.PHP_EOL;
 foreach ($urls as $url) {
