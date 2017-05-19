@@ -161,5 +161,5 @@ echo '#使用gitbook工具输出为mobi格式电子书：gitbook mobi '.$name.'/
 echo '#使用gitbook工具输出为epub格式电子书：gitbook epub '.$name.'/ '.explode('.',$argv[1])[0].'.epub'.PHP_EOL;
 echo '#注意：需要安装gitbook和calibre/ebook-convert，参考资料：'.PHP_EOL;
 echo 'http://www.jianshu.com/p/7476afdd9248'.PHP_EOL;
-echo 'https://chrisniael.gitbooks.io/gitbook-documentation/content/build/ebookconvert.html'.PHP_EOL;
+echo 'https://kindlefere.com/post/288.html#gb_6'.PHP_EOL;
 echo '===========' . PHP_EOL . PHP_EOL;

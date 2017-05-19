@@ -81,11 +81,9 @@
 > 
 
 ## 附录
-[Calibre：kindle后续成书步骤][1]
+[Gitbook安装全解](http://www.jianshu.com/p/7476afdd9248)
 
-[Gitbook安装全教程](http://www.jianshu.com/p/7476afdd9248)
-
-[ebook-convert安装教程](https://chrisniael.gitbooks.io/gitbook-documentation/content/build/ebookconvert.html)
+[Gitbook+Calibre安装及使用](https://kindlefere.com/post/288.html#gb_6)
 
 [1]:	https://kindlefere.com/post/82.html
 
