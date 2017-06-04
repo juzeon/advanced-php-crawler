@@ -29,9 +29,16 @@ function workUrl($url) {
 		preg_match('/<!-- 内容区 -->([\s\S]*)<!--\/内容区-->/', $article, $content);
 	}
 	//$content = str_replace(PHP_EOL . PHP_EOL, PHP_EOL, strip_tags($content[0]));
-	$content = str_replace(PHP_EOL . PHP_EOL, PHP_EOL, $content[0]);
+	$content = str_replace('　', ' ', $content[0]);
+	
+	$content=str_replace('*','\\*', $content);
+	$content=str_replace('~', '\\~', $content);
+	$content=str_ireplace('<strong>', '**', $content);
+	$content=str_ireplace('</strong>', '**', $content);
+	$content=str_ireplace('<em>', '*', $content);
+	$content=str_ireplace('</em>', '*', $content);
 	preg_match('/<title>(.*?)_(.*)<\/title>/', $article, $title);
-	$title = str_replace('&nbsp;', '', strip_tags($title[0]));
+	$title = str_replace('&nbsp;', ' ', strip_tags($title[0]));
 	$result['title'] = $title;
 	$result['content'] = $content;
 	return $result;
@@ -134,7 +141,7 @@ foreach ($urls as $url) {
 				
 			}
 		}
-		$content=str_replace('&nbsp;','',strip_tags($content));
+		$content=str_replace('&nbsp;',' ',strip_tags($content));
 		$f=fopen($name.'/'.$count.'.md','w');
 		fwrite($f,'# '.$result['title'].PHP_EOL.'### 序号：'.$count.PHP_EOL.$content.PHP_EOL);
 		fclose($f);
