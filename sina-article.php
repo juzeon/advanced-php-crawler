@@ -31,6 +31,7 @@ function workUrl($url) {
 	//$content = str_replace(PHP_EOL . PHP_EOL, PHP_EOL, strip_tags($content[0]));
 	$content = str_replace('　', ' ', $content[0]);
 	
+	$content=str_ireplace('_', '\\_', $content);
 	$content=str_ireplace('`', '\\`', $content);
 	$content=str_replace('*','\\*', $content);
 	$content=str_replace('~', '\\~', $content);
