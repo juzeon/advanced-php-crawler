@@ -31,12 +31,14 @@ function workUrl($url) {
 	//$content = str_replace(PHP_EOL . PHP_EOL, PHP_EOL, strip_tags($content[0]));
 	$content = str_replace('　', ' ', $content[0]);
 	
+	$content=str_ireplace('`', '\\`', $content);
 	$content=str_replace('*','\\*', $content);
 	$content=str_replace('~', '\\~', $content);
 	$content=str_ireplace('<strong>', '**', $content);
 	$content=str_ireplace('</strong>', '**', $content);
 	$content=str_ireplace('<em>', '*', $content);
 	$content=str_ireplace('</em>', '*', $content);
+	
 	preg_match('/<title>(.*?)_(.*)<\/title>/', $article, $title);
 	$title = str_replace('&nbsp;', ' ', strip_tags($title[0]));
 	$result['title'] = $title;
@@ -118,7 +120,7 @@ foreach ($urls as $url) {
 				echo '##正在存图：'.'http://'.$img_matches[1][$j].'.sinaimg.cn/'.$img_matches[2][$j] . PHP_EOL;
 				for ($ji = 0; $ji < 5; $ji++) {
 					$img_content=file_get_contents('http://'.$img_matches[1][$j].'.sinaimg.cn/'.$img_matches[2][$j]);
-					if (empty($img_content)) {
+					if (empty($img_content)||md5($img_content)=='7bd88df2b5be33e1a79ac91e7d0376b5') {
 						if($ji==4){
 							echo '##ERROR：正则匹配失败，且超出5次重试次数，自动略过。' . PHP_EOL . '---------' . PHP_EOL;
 							break;
