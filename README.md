@@ -2,6 +2,9 @@
 ## 新浪博客全能爬虫
 这套PHP编写的小程序可以帮助喜欢在电子书阅读器上看新浪博客上文章的你，它可以根据已知的文章列表来爬行，亦可以根据已知的文章目录来爬行。而且，它生成的是gitbook的标准格式，可以用gitbook/calibre工具自动生成多种格式（mobi/epub/pdf）的电子书。文章细节均已自动优化，爬行图片保存到本地，也生成封面，且使用MarkDown格式，只为带给你完美的阅读体验！
 ## 文件功能详解：
+
+需要PHP5以上版本以及开启allow\_url\_open。Windows用户可安装[phpstudy](http://www.phpstudy.net/)。
+
 ### sina-list.php
 它用于爬行像这样子的博客文章目录：
 ![][image-1]
