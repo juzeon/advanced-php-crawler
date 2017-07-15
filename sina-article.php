@@ -32,7 +32,6 @@ function workUrl($url) {
 	$content = str_replace('　', ' ', $content[0]);
 	
 	
-	$content=str_ireplace('_', '\\_', $content);
 	$content=str_ireplace('`', '\\`', $content);
 	$content=str_replace('*','\\*', $content);
 	$content=str_replace('~', '\\~', $content);
@@ -152,6 +151,7 @@ foreach ($urls as $url) {
 		$content=str_ireplace('</p>',PHP_EOL.PHP_EOL, $content);
 		$content=preg_replace('/<[bB][rR][ ]*\/[ ]*>/',PHP_EOL.PHP_EOL,$content);
 		$content=strip_tags($content);
+		$content=str_ireplace('_', '\\_', $content);
 		$content=preg_replace('/ {4,}/',' ',$content);
 		$content=preg_replace('/		*/',' ',$content);
 		//$content=preg_replace('/\n{1}?/',PHP_EOL.PHP_EOL,$content);
