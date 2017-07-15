@@ -42,6 +42,7 @@ function workUrl($url) {
 	
 	preg_match('/<title>(.*?)_(.*)<\/title>/', $article, $title);
 	$title = str_replace('&nbsp;', ' ', strip_tags($title[0]));
+	$title=str_replace('_','\\_', $title);
 	$result['title'] = $title;
 	$result['content'] = $content;
 	return $result;
