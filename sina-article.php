@@ -147,6 +147,7 @@ foreach ($urls as $url) {
 		}
 		$content=str_replace('&nbsp;',' ',strip_tags($content));
 		$content=preg_replace('/ {4,}/',' ',$content);
+		$content=preg_replace('/\n{1}?/',PHP_EOL.PHP_EOL,$content);
 		$f=fopen($name.'/'.$count.'.md','w');
 		fwrite($f,'# '.$result['title'].PHP_EOL.'### 序号：'.$count.PHP_EOL.$content.PHP_EOL);
 		fclose($f);
