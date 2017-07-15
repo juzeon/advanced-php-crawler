@@ -31,6 +31,7 @@ function workUrl($url) {
 	//$content = str_replace(PHP_EOL . PHP_EOL, PHP_EOL, strip_tags($content[0]));
 	$content = str_replace('　', ' ', $content[0]);
 	
+	
 	$content=str_ireplace('_', '\\_', $content);
 	$content=str_ireplace('`', '\\`', $content);
 	$content=str_replace('*','\\*', $content);
@@ -145,9 +146,15 @@ foreach ($urls as $url) {
 				
 			}
 		}
-		$content=str_replace('&nbsp;',' ',strip_tags($content));
+		$content=str_replace('&nbsp;',' ',$content);
+		$content=preg_replace('/\n*/','',$content);
+		$content=str_ireplace('</div>',PHP_EOL.PHP_EOL, $content);
+		$content=str_ireplace('</p>',PHP_EOL.PHP_EOL, $content);
+		$content=preg_replace('/<[bB][rR][ ]*\/[ ]*>/',PHP_EOL.PHP_EOL,$content);
+		$content=strip_tags($content);
 		$content=preg_replace('/ {4,}/',' ',$content);
-		$content=preg_replace('/\n{1}?/',PHP_EOL.PHP_EOL,$content);
+		$content=preg_replace('/		*/',' ',$content);
+		//$content=preg_replace('/\n{1}?/',PHP_EOL.PHP_EOL,$content);
 		$f=fopen($name.'/'.$count.'.md','w');
 		fwrite($f,'# '.$result['title'].PHP_EOL.'### 序号：'.$count.PHP_EOL.$content.PHP_EOL);
 		fclose($f);
