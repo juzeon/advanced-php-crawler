@@ -7,6 +7,15 @@ function workUrl($url){
 	preg_match_all('/<span class="atc_title">([\s\S]+?)<\/span>/',$http,$titles);
 	return array('blogUrls'=>$blogUrls,'titles'=>$titles);
 }
+function get_true_url($url){
+	if(strpos($url,'#')==-1){
+		return trim($url);
+	}else{
+		$true_url=trim(explode('#',trim($url))[0]);
+		return $true_url;
+	}
+}
+
 set_time_limit(0);
 if ($argc < 2) {
 	echo <<<EOF
@@ -43,6 +52,7 @@ if(file_exists($name)){
 }
 echo PHP_EOL.PHP_EOL;
 foreach ($urls as $url) {
+	$url=get_true_url($url);
 	if (empty($url)) {
 		continue;
 	}

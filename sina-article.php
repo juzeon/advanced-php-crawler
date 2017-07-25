@@ -47,6 +47,14 @@ function workUrl($url) {
 	$result['content'] = $content;
 	return $result;
 }
+function get_true_url($url){
+	if(strpos($url,'#')==-1){
+		return trim($url);
+	}else{
+		$true_url=trim(explode('#',trim($url))[0]);
+		return $true_url;
+	}
+}
 
 set_time_limit(0);
 if ($argc < 2) {
@@ -93,6 +101,7 @@ $cover_created=false;
 echo PHP_EOL.PHP_EOL;
 $count=0;
 foreach ($urls as $url) {
+	$url=get_true_url($url);
 	if (empty($url)) {
 		continue;
 	}
