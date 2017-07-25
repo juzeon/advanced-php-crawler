@@ -1,6 +1,8 @@
 # advanced-php-crawler
 ## 新浪博客全能爬虫
-这套PHP编写的小程序可以帮助喜欢在电子书阅读器上看新浪博客上文章的你，它可以根据已知的文章列表来爬行，亦可以根据已知的文章目录来爬行。而且，它生成的是gitbook的标准格式，可以用gitbook/calibre工具自动生成多种格式（mobi/epub/pdf）的电子书。文章细节均已自动优化，爬行图片保存到本地，也生成封面，且使用MarkDown格式，只为带给你完美的阅读体验！
+这套PHP编写的小程序可以帮助喜欢在电子书阅读器上看新浪博客上文章的你，它可以根据已知的文章列表来爬行，亦可以根据已知的文章目录来爬行——你只需要将URL写入一个文本文件，接着调用程序即可。当然，你可以使用`#`符号作为注释，与bash类似。而且，它生成的是gitbook的标准格式，可以用gitbook/calibre工具自动生成多种格式（mobi/epub/pdf）的电子书。文章细节均已自动优化，爬行图片保存到本地，也生成封面，且使用MarkDown格式，只为带给你完美的阅读体验！
+## 简明教程
+淀粉月刊撰写的本程序简明教程：[https://ptree.top/1635.html](https://ptree.top/1635.html)
 ## 文件功能详解：
 
 需要PHP5以上版本，Windows用户可安装[phpstudy](http://www.phpstudy.net/)。
@@ -27,7 +29,7 @@
 > 
 > 网址文件示例：
 > 
-> http://blog.sina.com.cn/s/articlelist_123456wsla.html 
+> http://blog.sina.com.cn/s/articlelist_123456wsla.html #我是注释
 > 
 > http://blog.sina.com.cn/s/articlelist_789456wsex.html 
 > 
