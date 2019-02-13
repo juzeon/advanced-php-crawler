@@ -171,6 +171,7 @@ function workUrl($url) {
 	return $result;
 }
 function caiyunTranslate($content){
+	echo '##正在调用彩云小译API生成双语正文' . PHP_EOL;
 	//$sendContent=preg_replace('/!\[img-\d+\]\(data:image\/jpg\/png\/gif;base64,([\s\S]*?)\)/','',$content);
 	$brokenText=explode(PHP_EOL.PHP_EOL,$content);
 	$sendText=[];
@@ -207,6 +208,6 @@ function caiyunTranslate($content){
 		$returnString.=$returnText[$key].PHP_EOL.PHP_EOL.$item.PHP_EOL.PHP_EOL.'&nbsp;'.PHP_EOL.PHP_EOL;
 	}
 	
-	
+	echo '##正文翻译完毕' . PHP_EOL;
 	return $returnString;
 }
