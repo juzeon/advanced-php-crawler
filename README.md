@@ -1,5 +1,5 @@
 # advanced-php-crawler
-## 新浪博客全能爬虫
+## 新浪博客/FimFiction全能爬虫
 这套PHP编写的小程序可以帮助喜欢在电子书阅读器上看新浪博客上文章的你，它可以根据已知的文章列表来爬行，亦可以根据已知的文章目录来爬行——你只需要将URL写入一个文本文件，接着调用程序即可。当然，你可以使用`#`符号作为注释，与bash类似。而且，它生成的是gitbook的标准格式，可以用gitbook/calibre工具自动生成多种格式（mobi/epub/pdf）的电子书。文章细节均已自动优化，爬行图片保存到本地，也生成封面，且使用MarkDown格式，只为带给你完美的阅读体验！
 ## 简明教程
 淀粉月刊撰写的本程序简明教程：[https://dfkan.com/1635.html](https://dfkan.com/1635.html)
@@ -84,6 +84,13 @@
 > 
 > http://blog.sina.com.cn/s/xxx_789456wsex.html
 > 
+
+### fimfic.php
+这个脚本专门用于处理FimFiction的故事，同时包括抓取图片、调用彩云小译API翻译正文为中英双语对照格式。
+
+> 使用方法：php fimfic.php <Story网址>
+> 
+> 命令示例：php fimfic.php https://www.fimfiction.net/story/318771/earth-without-us
 
 ## 附录
 [Gitbook安装全解](http://www.jianshu.com/p/7476afdd9248)
