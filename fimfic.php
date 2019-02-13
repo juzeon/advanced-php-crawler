@@ -36,6 +36,8 @@ if(file_exists($storyName)){
 	echo '检测到此书本存在，已经删除旧的文件' . PHP_EOL;
 }
 mkdir($storyName);
+$img_name=$storyName.'/img';
+mkdir($img_name);
 try{
 	preg_match('/property="og:image" content="(.*?)"/',$bookHtml,$m);
 	$coverUrl=$m[1];
@@ -67,6 +69,7 @@ foreach($chapterUrls as $count=>$url) {
 		preg_match_all('/class="user_image" src="(.*?)"/',$content,$img_matches);
 		
 		if(!empty($img_matches)){
+			mkdir($img_name.'/'.$count);
 			for($j=0;$j<count($img_matches[1]);$j++){
 				echo '##正在存图：'.$img_matches[1][$j]. PHP_EOL;
 				for ($ji = 0; $ji < 5; $ji++) {
@@ -82,8 +85,9 @@ foreach($chapterUrls as $count=>$url) {
 					} else {
 						echo '##图片有效' . PHP_EOL;
 					}
-					$base64=chunk_split(base64_encode($img_content));
-					$content=str_ireplace($img_matches[1][$j],'" >'.PHP_EOL.PHP_EOL.'![img-'.$j.'](data:image/jpg/png/gif;base64,'.$base64.')'.PHP_EOL.PHP_EOL.'<xx x="',$content);
+					//$base64=chunk_split(base64_encode($img_content));
+					file_put_contents($img_name.'/'.$count.'/'.$j.strrchr($img_matches[1][$j],'.'),$img_content);
+					$content=str_ireplace($img_matches[1][$j],'" >'.PHP_EOL.PHP_EOL.'![img-'.$j.']('.'img/'.$count.'/'.$j.strrchr($img_matches[1][$j],'.').')'.PHP_EOL.PHP_EOL.'<xx x="',$content);
 					break;
 				}
 				
@@ -111,15 +115,15 @@ echo '=============='.PHP_EOL.'#开始处理书本依赖文件'.PHP_EOL;
 $json_book=array(
 'title'=>$storyName,
 'description'=>'FimFiction爬虫于'.date('Y年m月d日 H:i').'生成的电子书',
-'language'=>'zh-cn',
+'language'=>'en-us',
 'author'=>'FimFiction爬虫'
 );
 $book_json=json_encode($json_book);
 file_put_contents($storyName.'/book.json',$book_json);
 echo '#全部任务处理完毕' . PHP_EOL . '---------' . PHP_EOL;
 echo '#你可以编辑book.json来修改这本书的详细信息，然后——'.PHP_EOL;
-echo '#使用gitbook工具输出为mobi格式电子书：gitbook mobi '.$storyName.'/ '.explode('.',$argv[1])[0].'.mobi'.PHP_EOL;
-echo '#使用gitbook工具输出为epub格式电子书：gitbook epub '.$storyName.'/ '.explode('.',$argv[1])[0].'.epub'.PHP_EOL;
+echo '#使用gitbook工具输出为mobi格式电子书：gitbook mobi '.$storyName.'/ '.$storyName.'.mobi'.PHP_EOL;
+echo '#使用gitbook工具输出为epub格式电子书：gitbook epub '.$storyName.'/ '.$storyName.'.epub'.PHP_EOL;
 echo '#注意：需要安装gitbook和calibre/ebook-convert，参考资料：'.PHP_EOL;
 echo 'http://www.jianshu.com/p/7476afdd9248'.PHP_EOL;
 echo 'https://kindlefere.com/post/288.html#gb_6'.PHP_EOL;
@@ -179,7 +183,7 @@ function caiyunTranslate($content){
 	foreach($brokenText as $paragraph){
 		$paragraph=trim($paragraph);
 		if(!empty($paragraph)){
-			$sendText[]=preg_replace('/!\[img-\d+\]\(data:image\/jpg\/png\/gif;base64,([\s\S]*?)\)/','Image.',$paragraph);
+			$sendText[]=preg_replace('/!\[img-\d+\]\\((.*?)\)/','Image',$paragraph);
 			$returnText[]=$paragraph;
 		}
 	}
