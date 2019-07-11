@@ -151,8 +151,8 @@ function workUrl($url) {
 	$article=file_get_contents(trim($url));
 	preg_match('/(<div class="bbcode">)([\s\S]*?)<style>/', $article, $content);
 	$content = $content[0];
-	
-	
+
+    $content=str_ireplace('#', '\\#', $content);
 	$content=str_ireplace('`', '\\`', $content);
 	$content=str_replace('*','\\*', $content);
 	$content=str_replace('~', '\\~', $content);
@@ -209,6 +209,10 @@ function caiyunTranslate($content){
 	curl_close($ch);
 	$returnString='';
 	foreach(json_decode($res)->target as $key=>$item){
+        $item=str_ireplace('#', '\\#', $item);
+        $item=str_ireplace('`', '\\`', $item);
+        $item=str_replace('*','\\*', $item);
+        $item=str_replace('~', '\\~', $item);
 		$returnString.=$returnText[$key].PHP_EOL.PHP_EOL.$item.PHP_EOL.PHP_EOL.'&nbsp;'.PHP_EOL.PHP_EOL;
 	}
 	
