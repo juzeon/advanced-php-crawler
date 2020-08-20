@@ -1,5 +1,6 @@
 # advanced-php-crawler
-## 新浪博客/FimFiction全能爬虫
+## 新浪博客/FimFiction/wenku8（轻小说文库）全能爬虫
+
 这套PHP编写的小程序可以帮助喜欢在电子书阅读器上看新浪博客上文章的你，它可以根据已知的文章列表来爬行，亦可以根据已知的文章目录来爬行——你只需要将URL写入一个文本文件，接着调用程序即可。当然，你可以使用`#`符号作为注释，与bash类似。而且，它生成的是gitbook的标准格式，可以用gitbook/calibre工具自动生成多种格式（mobi/epub/pdf）的电子书。文章细节均已自动优化，爬行图片保存到本地，也生成封面，且使用MarkDown格式，只为带给你完美的阅读体验！
 ## 简明教程
 淀粉月刊撰写的本程序简明教程：[https://dfkan.com/1635.html](https://dfkan.com/1635.html)
@@ -7,7 +8,24 @@
 
 需要PHP5以上版本，Windows用户可安装[phpstudy](http://www.phpstudy.net/)。
 
+### wenku8.php
+
+它用于抓取wenku8.net（轻小说文库）的全本小说，生成分卷章节，打包mobi/epub电子书。
+
+> 输入wenku8.net的BookID，抓取并生成电子书。
+> 
+> 使用方法：
+> 
+> php wenku8.php <BookID>
+> 
+> 命令示例：
+> 
+> php wenku8.php 1538
+> 
+> #即为网址 https://www.wenku8.net/book/1538.htm
+
 ### sina-list.php
+
 它用于爬行像这样子的博客文章目录：
 ![][image-1]
 
