@@ -70,7 +70,7 @@ echo PHP_EOL.PHP_EOL;
 $count=0;
 foreach($chapterUrls as $volTitle=>$vol) {
     $f=fopen($storyId.'/SUMMARY.md','a');
-    fwrite($f,'* ['.$volTitle.']()'.PHP_EOL);
+    fwrite($f,'* ['.$volTitle.'](SUMMARY.md)'.PHP_EOL);
     fclose($f);
     foreach ($vol as $chapterTitle=>$chapterUrl){
         echo '#现在处理：' . $chapterUrl . PHP_EOL;
@@ -93,7 +93,7 @@ foreach($chapterUrls as $volTitle=>$vol) {
             }
             $content=strip_tags($content);
             $f=fopen($storyId.'/'.$count.'.md','w');
-            fwrite($f,'# '.$chapterTitle.PHP_EOL.'### 序号：'.$count.PHP_EOL.'### 字数：'.mb_strlen($content).PHP_EOL.$content.PHP_EOL);
+            fwrite($f,'# '.$chapterTitle.PHP_EOL.'### 序号：'.$count.PHP_EOL.'### 字数：'.number_format(mb_strlen($content)).PHP_EOL.$content.PHP_EOL);
             fclose($f);
             $f=fopen($storyId.'/SUMMARY.md','a');
             fwrite($f,'   * ['.$chapterTitle.']('.$count.'.md)'.PHP_EOL);
@@ -138,34 +138,6 @@ function delDirAndFile( $dirName )
         closedir( $handle );
         rmdir( $dirName );
     }
-}
-function workUrl($url) {
-    $content='';
-    $article=file_get_contents(trim($url));
-    preg_match('/(<div class="bbcode">)([\s\S]*?)<style>/', $article, $content);
-    $content = $content[0];
-
-    $content=str_ireplace('#', '\\#', $content);
-    $content=str_ireplace('`', '\\`', $content);
-    $content=str_replace('*','\\*', $content);
-    $content=str_replace('~', '\\~', $content);
-    $content=preg_replace_callback('/<b>(.*?)<\/b>/',function($m){
-        return ' **'.trim($m[1]).'** ';
-    },$content);
-    $content=preg_replace_callback('/<i>(.*?)<\/i>/',function($m){
-        return ' *'.trim($m[1]).'* ';
-    },$content);
-    $content=preg_replace('/\n*/','',$content);
-    $content=str_ireplace('</div>',PHP_EOL.PHP_EOL, $content);
-    $content=str_ireplace('</p>',PHP_EOL.PHP_EOL, $content);
-    $content=preg_replace('/<[bB][rR][ ]*\/[ ]*>/',PHP_EOL.PHP_EOL,$content);
-
-    preg_match('/<title>(.*?)<\/title>/', $article, $title);
-    $title = str_replace('&nbsp;', ' ', strip_tags($title[0]));
-    $title=str_replace('_','\\_', $title);
-    $result['title'] = $title;
-    $result['content'] = $content;
-    return $result;
 }
 function strToUtf8 ($str = '') {
     $current_encode = mb_detect_encoding($str, array("ASCII","GB2312","GBK",'BIG5','UTF-8'));
