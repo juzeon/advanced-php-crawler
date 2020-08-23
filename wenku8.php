@@ -73,7 +73,7 @@ foreach($chapterUrls as $volTitle=>$vol) {
     fwrite($f,'* ['.$volTitle.'](SUMMARY.md)'.PHP_EOL);
     fclose($f);
     foreach ($vol as $chapterTitle=>$chapterUrl){
-        echo '#现在处理：' . $chapterUrl . PHP_EOL;
+        echo '#现在处理：' . $chapterTitle.' - '.$volTitle.' '.$chapterUrl . PHP_EOL;
         for ($i = 0; $i < 5; $i++) {
             $chapterHtml=strToUtf8(file_get_contents($chapterUrl));
             preg_match('/<\/ul>([\s\S]*?)<ul id/',$chapterHtml,$m);
@@ -96,7 +96,7 @@ foreach($chapterUrls as $volTitle=>$vol) {
             fwrite($f,'# '.$chapterTitle.PHP_EOL.'### 序号：'.$count.PHP_EOL.'### 字数：'.number_format(mb_strlen($content)).PHP_EOL.$content.PHP_EOL);
             fclose($f);
             $f=fopen($storyId.'/SUMMARY.md','a');
-            fwrite($f,'   * ['.$chapterTitle.']('.$count.'.md)'.PHP_EOL);
+            fwrite($f,'   * ['.$chapterTitle.' - '.$volTitle.']('.$count.'.md)'.PHP_EOL);
             fclose($f);
             echo '#写入数据完毕' . PHP_EOL . '---------' . PHP_EOL;
             $count++;
